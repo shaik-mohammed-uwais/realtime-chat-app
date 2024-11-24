@@ -1,5 +1,16 @@
 import { ApiResponse } from "../../utils/ApiResponse.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
+import fs from "fs";
+import path from "path";
+
+// Helper function to read JSON files
+const readJsonFile = (relativePath) => {
+  const absolutePath = path.resolve(relativePath);
+  return JSON.parse(fs.readFileSync(absolutePath, "utf-8"));
+};
+
+// Replace with correct relative paths to JSON files
+const statusCodesJson = readJsonFile("./src/json/status-codes.json");
 
 const getResponseHeaders = asyncHandler(async (req, res) => {
   res.set({
